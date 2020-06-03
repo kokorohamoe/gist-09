@@ -16,6 +16,8 @@ int main(void){
     std::thread t2([&]{cv.notify_one();std::cout <<"pass thread unlock one"<<std::endl;});
     cv.wait(lk);
     std::cout << "pass lock" << std::endl;
+    cv.wait(lk);
+    std::cout << "pass lock" << std::endl;
     t1.join();
     t2.join();
     std::cout << "pass join" << std::endl;
