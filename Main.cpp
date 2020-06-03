@@ -14,7 +14,8 @@ int main(void){
     std::cout << "lock" << std::endl;
     std::thread t([&]{cv.notify_one();});
     cv.wait(lk);
+    std::cout << "pass lock" << std::endl;
     t.join();
-
+    std::cout << "pass lock" << std::endl;
 
 }
