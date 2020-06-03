@@ -12,11 +12,12 @@ int main(void){
     std::unique_lock<std::mutex> lk(m);
     
     std::cout << "lock" << std::endl;
-    std::thread t([&]{cv.notify_one();std::cout <<"pass thread unlock one"<<std::endl;});
-    std::thread t([&]{cv.notify_one();std::cout <<"pass thread unlock one"<<std::endl;});
+    std::thread t1([&]{cv.notify_one();std::cout <<"pass thread unlock one"<<std::endl;});
+    std::thread t2([&]{cv.notify_one();std::cout <<"pass thread unlock one"<<std::endl;});
     cv.wait(lk);
     std::cout << "pass lock" << std::endl;
-    t.join();
+    t1.join();
+    t2.join();
     std::cout << "pass join" << std::endl;
 
 }
